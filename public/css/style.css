@@ -44,7 +44,7 @@ form button {
 	background: #eee;
 }
 
-.banner {
+#banner {
 	text-indent: 15px;
 	font-family: "Lucida Console", Monaco, monospace;
 	font-size: 32px;
@@ -52,44 +52,44 @@ form button {
 	color: white
 }
 
-.event {
+#event {
 	color: orange;
 	font-size: 12px;
 	font-weight: bold;
 	text-indent: 15px;
 }
 
-.time {
+#time {
 	float: right;
 	font-size: 10px;
 }
 
-.date {
+#date {
 	color: #5A86BF;
 	text-align: center;
 	font-weight: bold;
 	opacity: .5;
 }
 
-.name {
+#name {
 	float: left;
 	padding-right: 20px;
 	font-weight: bold;
 }
 
-.user {
+#user {
 	display: inline;
 	font-size: 15px;
 	margin-left: -10px;
 	/*text-shadow: 0px 0px .5px #ffffff;*/
 }
 
-.banner-title {
+#banner-title {
 	display: inline;
 	padding-right: 20px
 }
 
-.online {
+#online {
 	display: inline-block;
 	border: 6px solid #00BF00;
 	border-radius: 50px;
