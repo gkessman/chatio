@@ -1,11 +1,13 @@
 var socket = io();
 var dateBanner = "";
 var name = "";
+var nameColor= "";
 
 $('form').submit(function() {
 	var msg = {
 		user: name,
-		body: $('#m').val()
+		body: $('#m').val(),
+		nameColor: color
 	};
 	socket.emit('chat message', msg);
 	$('#m').val('');
@@ -16,6 +18,7 @@ socket.on('chat message', function(msg) {
 	checkDate();
 	$('#messages').append($('<li>').text(msg.body));
 	$('#messages li:last').prepend($('<p class="name">').text(msg.user));
+	$('.name:last').css('color', msg.nameColor)
 	$('#messages li:last').append($('<p class="time">').text(new Date(msg.time).toLocaleTimeString()));
 });
 
@@ -25,6 +28,7 @@ socket.on('event message', function(event) {
 	$('#messages li:last').append($('<p class="time">').text(new Date().toLocaleTimeString()));
 	if (!name) {
 		name = event.user;
+		color = event.nameColor;
 		$('.user').text(name);
 	}
 });

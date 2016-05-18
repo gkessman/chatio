@@ -24,7 +24,8 @@ io.on('connection', function(socket) {
 	var name = adjective[Math.floor(Math.random() * adjective.length)] + " " + noun[Math.floor(Math.random() * noun.length)]
 	var event = {
 		user: name,
-		action: 'connected'
+		action: 'connected',
+		nameColor: getRandomColor()
 	};
 	console.log(event.user + ' ' + event.action);
 	io.emit('event message', event);
@@ -48,6 +49,15 @@ io.on('connection', function(socket) {
 		io.emit('event message', event);
 	});
 });
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
 
 http.listen(port, function() {
 	console.log('listening on port ' + port);
