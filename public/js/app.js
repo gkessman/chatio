@@ -7,7 +7,7 @@ $('form').submit(function() {
 	var msg = {
 		user: name,
 		body: $('#m').val(),
-		nameColor: color
+		nameColor: nameColor
 	};
 	socket.emit('chat message', msg);
 	$('#m').val('');
@@ -28,8 +28,8 @@ socket.on('event message', function(event) {
 	$('#messages li:last').append($('<p class="time">').text(new Date().toLocaleTimeString()));
 	if (!name) {
 		name = event.user;
-		color = event.nameColor;
-		$('.user').text(name);
+		nameColor = event.nameColor;
+		$('.user').text(name).css('text-shadow', '1px 1px 2px black, 0 0 10px ' + nameColor);
 	}
 });
 
