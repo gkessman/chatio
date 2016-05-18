@@ -29,6 +29,8 @@ socket.on('event message', function(event) {
 	if (!name) {
 		name = event.user;
 		nameColor = event.nameColor;
+		$('#banner').append($('<div id="online" title="connected">'));
+		$('#banner').append($('<p id="user">'));
 		$('#user').text(name).css('text-shadow', '1px 1px 2px black, 0 0 10px ' + nameColor);
 	}
 });
