@@ -1,0 +1,99 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font: 13px Helvetica, Arial;
+}
+
+form {
+	background: #000;
+	padding: 3px;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
+form input {
+	border: 0;
+	padding: 10px;
+	width: 90%;
+	margin-right: .5%;
+}
+
+form button {
+	width: 9%;
+	background: rgb(130, 224, 255);
+	border: none;
+	padding: 10px;
+}
+
+#messages {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#messages li {
+	padding: 5px 10px;
+}
+
+#messages li:nth-child(odd) {
+	background: #eee;
+}
+
+.banner {
+	text-indent: 15px;
+	font-family: "Lucida Console", Monaco, monospace;
+	font-size: 32px;
+	background-color: #676767;
+	color: white
+}
+
+.event {
+	color: orange;
+	font-size: 12px;
+	font-weight: bold;
+	text-indent: 15px;
+}
+
+.time {
+	float: right;
+	font-size: 10px;
+}
+
+.date {
+	color: #5A86BF;
+	text-align: center;
+	font-weight: bold;
+	opacity: .5;
+}
+
+.name {
+	float: left;
+	padding-right: 20px;
+	color: #30AFD8;
+	font-weight: bold;
+}
+
+.user {
+	display: inline;
+	font-size: 15px;
+	margin-left: -10px;
+}
+
+.banner-title {
+	display: inline;
+	padding-right: 20px
+}
+
+.online {
+	display: inline-block;
+	border: 6px solid #00BF00;
+	border-radius: 50px;
+	height: 10px;
+	position: relative;
+	top: 1px;
+}
