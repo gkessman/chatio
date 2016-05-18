@@ -96,3 +96,31 @@ form button {
 	position: relative;
 	top: 1px;
 }
+
+#container {
+	width: 100%;
+	overflow: hidden;
+}
+
+#chat-window {
+	width: 88%;
+	float: left;
+}
+
+#user-list {
+	border: 2px solid gray;
+	height: 100vh;
+	margin-left: 88%;
+	text-indent: 10px;
+}
+
+#users {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#users li {
+	padding: 5px 10px;
+	display: block;
+}

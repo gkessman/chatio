@@ -10,11 +10,18 @@
 		<p id="banner-title">ChatIO</p>
 	</div>
 	<hr />
-	<ul id="messages"></ul>
-	<form action="">
-		<input type="text" id="m" autocomplete="off" autofocus="autofocus"/><button>Send</button>
-		<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-	</form>
+	<div id="container">
+		<div id="chat-window">
+			<ul id="messages"></ul>
+			<form action="">
+				<input type="text" id="m" autocomplete="off" autofocus="autofocus"/><button>Send</button>
+				<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+			</form>
+		</div>
+		<div id="user-list">
+			<ul id="users"></ul>
+		</div>
+	</div>
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="js/app.js"></script>
 </body>

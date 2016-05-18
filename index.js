@@ -14,6 +14,8 @@ var noun = ['story', 'singer', 'discussion', 'possession', 'marriage', 'satisfac
 				'attitude', 'height', 'presentation', 'procedure', 'setting', 'president', 'administration', 'literature', 'reality', 'apple', 'reading', 'growth', 'success',
 				'organization', 'idea', 'loss', 'finding', 'mud', 'pollution'];
 
+var currentUsers = [];
+
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res) {
@@ -22,18 +24,28 @@ app.get('/', function(req, res) {
 
 io.on('connection', function(socket) {
 	var name = adjective[Math.floor(Math.random() * adjective.length)] + " " + noun[Math.floor(Math.random() * noun.length)]
+	currentUsers.push(name);
 	var event = {
 		user: name,
 		action: 'connected',
-		nameColor: getRandomColor()
+		nameColor: getRandomColor(),
+		userList: currentUsers
+
 	};
 	console.log(event.user + ' ' + event.action);
 	io.emit('event message', event);
 	socket.on('disconnect', function() {
+		var i = currentUsers.indexOf(name);
+		if(i > -1) {
+			currentUsers.splice(i, 1);
+		};
+
 		var event = {
 			user: name,
-			action: 'disconnected'
+			action: 'disconnected',
+			userList: currentUsers
 		}
+
 		console.log(event.user + ' ' + event.action);
 		io.emit('event message', event);
 	});

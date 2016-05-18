@@ -1,11 +1,11 @@
 var socket = io();
 var dateBanner = "";
-var name = "";
-var nameColor= "";
+var userName = "";
+var nameColor = "";
 
 $('form').submit(function() {
 	var msg = {
-		user: name,
+		user: userName,
 		body: $('#m').val(),
 		nameColor: nameColor
 	};
@@ -26,20 +26,32 @@ socket.on('event message', function(event) {
 	checkDate();
 	$('#messages').append($('<li id="event">').text(event.user + ' ' + event.action));
 	$('#messages li:last').append($('<p id="time">').text(new Date().toLocaleTimeString()));
-	if (!name) {
-		name = event.user;
-		nameColor = event.nameColor;
-		$('#banner').append($('<div id="online" title="connected">'));
-		$('#banner').append($('<p id="user">'));
-		$('#user').text(name).css('text-shadow', '1px 1px 2px black, 0 0 10px ' + nameColor);
+	if (!userName) {
+		displayConnect(event);
 	}
+	userListPop(event);
 });
 
-var checkDate = function() {
+function checkDate() {
 	var d = new Date();
 	var date = d.getMonth() + '/' + d.getDate() + '/' + d.getFullYear();
 	if (dateBanner != date) {
 		dateBanner = date;
 		$('#messages').append($('<li id="date">').text(dateBanner));
+	}
+}
+
+function displayConnect(event) {
+	userName = event.user;
+	nameColor = event.nameColor;
+	$('#banner').append($('<div id="online" title="connected">'));
+	$('#banner').append($('<p id="user">'));
+	$('#user').text(userName).css('text-shadow', '1px 1px 2px black, 0 0 10px ' + nameColor);
+}
+
+function userListPop(event) {
+	$('#users li').remove();
+	for (var i = 0; i < event.userList.length; i++) {
+		$('#users').append($('<li id="user" name="'+ event.userList[i] +'">').text(event.userList[i]));
 	}
 }
