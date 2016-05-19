@@ -4,13 +4,15 @@ var userName = "";
 var nameColor = "";
 
 $('form').submit(function() {
-	var msg = {
-		user: userName,
-		body: $('#m').val(),
-		nameColor: nameColor
-	};
-	socket.emit('chat message', msg);
-	$('#m').val('');
+	if ($('#m').val() != '') {
+		var msg = {
+			user: userName,
+			body: $('#m').val(),
+			nameColor: nameColor
+		};
+		socket.emit('chat message', msg);
+		$('#m').val('');
+	}
 	return false;
 });
 
@@ -44,14 +46,14 @@ function checkDate() {
 function displayConnect(event) {
 	userName = event.user;
 	nameColor = event.nameColor;
-	$('#banner').append($('<div id="online" title="connected">'));
-	$('#banner').append($('<p id="user">'));
-	$('#user').text(userName).css('text-shadow', '1px 1px 2px black, 0 0 10px ' + nameColor);
 }
 
 function userListPop(event) {
 	$('#users li').remove();
-	for (var i = 0; i < event.userList.length; i++) {
-		$('#users').append($('<li id="user" name="'+ event.userList[i] +'">').text(event.userList[i]));
-	}
-}
+	$.map(event.userList, function(obj, index) {
+		$('#users').append($('<li id="user" name="' + obj.userName + '">').text(obj.userName).css('color', obj.userColor));
+		console.log("list names ", obj.userName);
+		console.log("local name: ", userName);
+		$('#user[name="'+ userName + '"]').css('background-color', 'lightblue');
+	});
+};
