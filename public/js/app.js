@@ -36,7 +36,7 @@ socket.on('event message', function(event) {
 
 function checkDate() {
 	var d = new Date();
-	var date = d.getMonth() + '/' + d.getDate() + '/' + d.getFullYear();
+	var date = d.getMonth()+1 + '/' + d.getDate() + '/' + d.getFullYear();
 	if (dateBanner != date) {
 		dateBanner = date;
 		$('#messages').append($('<li id="date">').text(dateBanner));
