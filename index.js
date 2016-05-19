@@ -25,7 +25,27 @@ app.get('/', function(req, res) {
 });
 
 io.on('connection', function(socket) {
-	var name = adjective[Math.floor(Math.random() * adjective.length)] + " " + noun[Math.floor(Math.random() * noun.length)]
+
+	var unique = false;
+	var found = false;
+
+	while (!unique) {
+		var name = adjective[Math.floor(Math.random() * adjective.length)] + " " + noun[Math.floor(Math.random() * noun.length)];
+		if (currentUsers.length > 0) {
+			currentUsers.map(function(obj, index) {
+				console.log(obj.userName);
+				if (obj.userName == name) {
+					found = true;
+				}
+				if (!found) {
+					unique = true
+				};
+			});
+		} else {
+			unique = true;
+		}
+	};
+
 	var color = getRandomColor();
 
 	currentUsers.push({
@@ -39,7 +59,7 @@ io.on('connection', function(socket) {
 		nameColor: color,
 		userList: currentUsers
 	};
-	
+
 	console.log(event.user + ' ' + event.action);
 	io.emit('event message', event);
 	socket.on('disconnect', function() {
