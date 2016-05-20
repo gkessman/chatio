@@ -1,14 +1,14 @@
 var socket = io();
 var dateBanner = "";
 var userName = "";
-var nameColor = "";
+var userColor = "";
 
 $('form').submit(function() {
 	if ($('#m').val() != '') {
 		var msg = {
 			user: userName,
 			body: $('#m').val(),
-			nameColor: nameColor
+			userColor: userColor
 		};
 		socket.emit('chat message', msg);
 		$('#m').val('');
@@ -20,14 +20,14 @@ socket.on('chat message', function(msg) {
 	checkDate();
 	$('#messages').append($('<li>').text(msg.body));
 	$('#messages li:last').prepend($('<p id="name">').text(msg.user));
-	$('#name:last-child').css('color', msg.nameColor)
+	$('#name:last-child').css('color', msg.userColor)
 	$('#messages li:last').append($('<p id="time">').text(new Date(msg.time).toLocaleTimeString()));
 });
 
 socket.on('event message', function(event) {
 	checkDate();
 	$('#messages').append($('<li id="event">').text(event.user + ' ' + event.action));
-	$('#messages li:last').append($('<p id="time">').text(new Date().toLocaleTimeString()));
+	$('#messages li:last').append($('<p id="time">').text(new Date(event.time).toLocaleTimeString()));
 	if (!userName) {
 		displayConnect(event);
 	}
@@ -45,15 +45,13 @@ function checkDate() {
 
 function displayConnect(event) {
 	userName = event.user;
-	nameColor = event.nameColor;
+	userColor = event.userColor;
 }
 
 function userListPop(event) {
 	$('#users li').remove();
 	$.map(event.userList, function(obj, index) {
 		$('#users').append($('<li id="user" name="' + obj.userName + '">').text(obj.userName).css('color', obj.userColor));
-		console.log("list names ", obj.userName);
-		console.log("local name: ", userName);
 		$('#user[name="'+ userName + '"]').css('background-color', 'lightblue');
 	});
 };
