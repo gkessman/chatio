@@ -54,13 +54,14 @@ function publishEvent(user, color, users, status) {
 		time: new Date(),
 		user: user,
 		action: status,
-		userColor: color,
-		userList: users
+		userColor: color
 	};
 	
-	// console.log(event.user + ' ' + event.action);
 	console.log(JSON.stringify(event));
+	// Fire event message
 	io.emit('event message', event);
+	// Update user list client-side
+	io.emit('users', users);
 }
 
 function getRandomColor() {

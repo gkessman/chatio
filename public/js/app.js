@@ -31,12 +31,19 @@ socket.on('event message', function(event) {
 	if (!userName) {
 		displayConnect(event);
 	}
-	userListPop(event);
+});
+
+socket.on('users', function(users) {
+	$('#users li').remove();
+	$.map(users, function(obj, index) {
+		$('#users').append($('<li id="user" name="' + obj.userName + '">').text(obj.userName).css('color', obj.userColor));
+		$('#user[name="' + userName + '"]').css('background-color', 'lightblue');
+	});
 });
 
 function checkDate() {
 	var d = new Date();
-	var date = d.getMonth()+1 + '/' + d.getDate() + '/' + d.getFullYear();
+	var date = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear();
 	if (dateBanner != date) {
 		dateBanner = date;
 		$('#messages').append($('<li id="date">').text(dateBanner));
@@ -47,11 +54,3 @@ function displayConnect(event) {
 	userName = event.user;
 	userColor = event.userColor;
 }
-
-function userListPop(event) {
-	$('#users li').remove();
-	$.map(event.userList, function(obj, index) {
-		$('#users').append($('<li id="user" name="' + obj.userName + '">').text(obj.userName).css('color', obj.userColor));
-		$('#user[name="'+ userName + '"]').css('background-color', 'lightblue');
-	});
-};
