@@ -1,5 +1,6 @@
 var express = require('express');
 var $ = require('jquery');
+var favicon = require('serve-favicon');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
@@ -17,8 +18,8 @@ var noun = ['story', 'singer', 'discussion', 'possession', 'marriage', 'satisfac
 	'organization', 'idea', 'loss', 'finding', 'mud', 'pollution'
 ];
 
-
 app.use(express.static(__dirname + '/public'));
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
 app.get('/', function(req, res) {
 	res.redirect('/index.html');
