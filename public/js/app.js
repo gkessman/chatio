@@ -18,10 +18,10 @@ $('form').submit(function() {
 
 socket.on('chat message', function(msg) {
 	checkDate();
-	$('#messages').append($('<li>').text(msg.body));
-	$('#messages li:last').prepend($('<p id="name">').text(msg.user));
-	$('#name:last-child').css('color', msg.userColor)
-	$('#messages li:last').append($('<p id="time">').text(new Date(msg.time).toLocaleTimeString()));
+	$('#messages').append($('<li id="'+ msg.id +'">').text(msg.body));
+	$('li[id="'+ msg.id +'"]').prepend($('<p id="name">').text(msg.user));
+	$('li[id="'+ msg.id +'"] #name').css('color', msg.userColor)
+	$('li[id="'+ msg.id +'"]').append($('<p id="time">').text(new Date(msg.time).toLocaleTimeString()));
 });
 
 socket.on('event message', function(event) {

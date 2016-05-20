@@ -42,6 +42,7 @@ io.on('connection', function(socket) {
 	});
 
 	socket.on('chat message', function(msg) {
+		msg.id = messageId();
 		msg.time = new Date();
 		console.log(JSON.stringify(msg));
 		io.emit('chat message', msg);
@@ -56,7 +57,7 @@ function publishEvent(user, color, users, status) {
 		action: status,
 		userColor: color
 	};
-	
+
 	console.log(JSON.stringify(event));
 	// Fire event message
 	io.emit('event message', event);
@@ -85,6 +86,16 @@ function newUser() {
 	};
 
 	return name;
+}
+
+function messageId() {
+	var text = "";
+	var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+	for (var i = 0; i < 15; i++)
+		text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+	return text;
 }
 
 http.listen(port, function() {
