@@ -4,12 +4,13 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	overflow: hidden;
 }
 
 html, body {
 	font-family: 'Raleway', sans-serif;
 	height: 100%;
-	overflow-y: hidden;
+	overflow: hidden;
 }
 
 form {
@@ -22,7 +23,7 @@ form input {
 	background: #ececec;
 	border: 0;
 	padding: 15px;
-	width: 100%;
+	width: 87.8%;
 	margin-right: .5%;
 	font-size: 15px;
 }
@@ -38,8 +39,6 @@ form input:focus {
 }
 
 .message {
-	position: relative;
-	height: 60px;
 	padding: 0px 10px;
 }
 
@@ -71,7 +70,7 @@ form input:focus {
 }
 
 #event-time {
-	float: right;
+	float: left;
 	padding-right: 10px;
 }
 
@@ -114,7 +113,9 @@ form input:focus {
     clear: left;
     position: relative;
     bottom: 15px;
-    left: 60px
+    left: 60px;
+    width: 95%;
+    word-wrap: break-word;
 }
 
 #banner-title {
@@ -134,14 +135,14 @@ form input:focus {
 #container {
 	width: 100%;
 	height: 100%;
-	overflow: hidden;
+	overflow-y: hidden;
 }
 
 #chat-window {
 	width: 88%;
-	height: 100%;
+	height: 91%;
 	float: left;
-	box-shadow: 2px 0px 5px black;
+	/*box-shadow: 2px 0px 5px black;*/
 	overflow-y: scroll;
 }
 
@@ -156,6 +157,7 @@ form input:focus {
 	text-indent: 10px;
 	padding-top: 10px;
 	overflow-y: scroll;
+	box-shadow: -1px 0px 5px black;
 }
 
 #user-list::-webkit-scrollbar { 

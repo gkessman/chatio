@@ -17,7 +17,7 @@ $('form').submit(function() {
 });
 
 socket.on('chat message', function(msg) {
-	// checkDate();
+	checkDate();
 	var matches = msg.user.match(/\b(\w)/g);
 	var acronym = matches.join('').charAt(0).toUpperCase() + matches.slice(1);
 	$('#messages').append($('<li id="'+ msg.id +'" class="message">'));
@@ -29,10 +29,10 @@ socket.on('chat message', function(msg) {
 });
 
 socket.on('event message', function(event) {
-	// checkDate();
+	checkDate();
 	$('#messages').append($('<li id="event">'));
 	$('#messages li:last').prepend($('<div id="event-body">').text(event.user + ' ' + event.action));
-	$('#messages li:last').append($('<div id="event-time">').text(new Date(event.time).toLocaleTimeString()));
+	$('#messages li:last').prepend($('<div id="event-time">').text(new Date(event.time).toLocaleTimeString()));
 	if (!userName) {
 		displayConnect(event);
 	}
