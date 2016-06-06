@@ -37,8 +37,10 @@ form input:focus {
 	padding: 0;
 }
 
-#messages li {
-	padding: 5px 10px;
+.message {
+	position: relative;
+	height: 60px;
+	padding: 0px 10px;
 }
 
 #messages li:nth-child(odd) {
@@ -56,11 +58,25 @@ form input:focus {
 	color: orange;
 	font-size: 14px;
 	text-indent: 15px;
+	height: 20px;
+	padding-top: 2px;
 }
 
 #time {
+	font-size: 13px;
+	position: relative;
+	top: 10px;
+	float: left;
+	opacity: .5;
+}
+
+#event-body {
+	float: left;
+}
+
+#event-time {
 	float: right;
-	font-size: 12px;
+	padding-right: 10px;
 }
 
 #date {
@@ -70,10 +86,39 @@ form input:focus {
 	opacity: .5;
 }
 
+#msg {
+	height: inherit;
+}
+
 #name {
-	float: left;
+	font-size: 14px;
 	padding-right: 20px;
+	padding-left: 10px;
 	font-weight: bold;
+	position: relative;
+	top: 10px;
+	float: left
+}
+
+#avatar {
+	padding-top: 12px;
+	width: 50px;
+	height: 50px;
+	color: white;
+	font-size: 22px;
+	font-weight: bold;
+	border-radius: 5px;
+	position: relative;
+	top: 5px;
+	float: left;
+	text-align: center;
+}
+
+#body {
+    clear: left;
+    position: relative;
+    bottom: 15px;
+    left: 60px
 }
 
 #banner-title {

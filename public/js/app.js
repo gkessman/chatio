@@ -17,17 +17,22 @@ $('form').submit(function() {
 });
 
 socket.on('chat message', function(msg) {
-	checkDate();
-	$('#messages').append($('<li id="'+ msg.id +'">').text(msg.body));
-	$('li[id="'+ msg.id +'"]').prepend($('<p id="name">').text(msg.user));
-	$('li[id="'+ msg.id +'"] #name').css('color', msg.userColor)
-	$('li[id="'+ msg.id +'"]').append($('<p id="time">').text(new Date(msg.time).toLocaleTimeString()));
+	// checkDate();
+	var matches = msg.user.match(/\b(\w)/g);
+	var acronym = matches.join('').charAt(0).toUpperCase() + matches.slice(1);
+	$('#messages').append($('<li id="'+ msg.id +'" class="message">'));
+	var selector = $('li[id="'+ msg.id +'"]');
+	selector.prepend($('<div id="body">').text(msg.body));
+	selector.prepend($('<div id="time">').text(new Date(msg.time).toLocaleTimeString()));
+	selector.prepend($('<div id="name">').text(msg.user));
+	selector.prepend($('<div id="avatar">').text(acronym).css('background-color', msg.userColor));
 });
 
 socket.on('event message', function(event) {
-	checkDate();
-	$('#messages').append($('<li id="event">').text(event.user + ' ' + event.action));
-	$('#messages li:last').append($('<p id="time">').text(new Date(event.time).toLocaleTimeString()));
+	// checkDate();
+	$('#messages').append($('<li id="event">'));
+	$('#messages li:last').prepend($('<div id="event-body">').text(event.user + ' ' + event.action));
+	$('#messages li:last').append($('<div id="event-time">').text(new Date(event.time).toLocaleTimeString()));
 	if (!userName) {
 		displayConnect(event);
 	}

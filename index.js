@@ -28,7 +28,7 @@ io.on('connection', function(socket) {
 		userColor: color
 	});
 
-	publishEvent(user, color, users, 'connected');
+	publishEvent(user, color, users, 'joined the chat');
 
 	socket.on('disconnect', function() {
 
@@ -38,7 +38,7 @@ io.on('connection', function(socket) {
 			}
 		});
 
-		publishEvent(user, color, users, 'disconnected');
+		publishEvent(user, color, users, 'left the chat');
 	});
 
 	socket.on('chat message', function(msg) {
