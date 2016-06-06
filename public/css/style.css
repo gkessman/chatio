@@ -43,10 +43,6 @@ form input:focus {
 	padding: 0px 10px;
 }
 
-#messages li:nth-child(odd) {
-	background: #eee;
-}
-
 #banner {
 	text-indent: 15px;
 	font-size: 32px;
