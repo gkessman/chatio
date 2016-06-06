@@ -26,6 +26,8 @@ socket.on('chat message', function(msg) {
 	selector.prepend($('<div id="time">').text(new Date(msg.time).toLocaleTimeString()));
 	selector.prepend($('<div id="name">').text(msg.user));
 	selector.prepend($('<div id="avatar">').text(acronym).css('background-color', msg.userColor));
+
+	$('#chat-window').animate({ scrollTop: $('#messages').height() }, 500);
 });
 
 socket.on('event message', function(event) {
