@@ -22,13 +22,15 @@ io.on('connection', function(socket) {
 
 	var user = newUser();
 	var color = getRandomColor();
+	var ip = socket.handshake.address;
 
 	users.push({
 		userName: user,
 		userColor: color
 	});
 
-	publishEvent(user, color, users, 'joined the chat');
+	
+	publishEvent(user, color, users, ip, 'joined the chat');
 
 	socket.on('disconnect', function() {
 
@@ -38,24 +40,26 @@ io.on('connection', function(socket) {
 			}
 		});
 
-		publishEvent(user, color, users, 'left the chat');
+		publishEvent(user, color, users, ip, 'left the chat');
 	});
 
 	socket.on('chat message', function(msg) {
 		msg.id = messageId();
 		msg.time = new Date();
+		msg.ip = socket.handshake.address;
 		console.log(JSON.stringify(msg));
 		io.emit('chat message', msg);
 	});
 });
 
 
-function publishEvent(user, color, users, status) {
+function publishEvent(user, color, users, ip, status) {
 	var event = {
 		time: new Date(),
 		user: user,
 		action: status,
-		userColor: color
+		userColor: color,
+		ip: ip
 	};
 
 	console.log(JSON.stringify(event));
